@@ -48,8 +48,6 @@ Pixy 的出现解决了两个问题 :
 | 可用的输入输出 | UART 串口，SPI，I2C，USB，模拟，数字 |
 |      尺寸      |        2.1'' × 1.75'' × 1.4''        |
 
-## 配送清单
-
 ## 使用方法
 
 ### 教 Pixy 识别一个物体
@@ -117,7 +115,7 @@ Pixy 可以学习识别 7 个颜色标记。在上面部分，我们通过松开
 
 你可以通过这种方式教 Pixy 识别物体，最多可以有 7 种颜色标记。需要注意的是 Pixy 总是将标记记忆在 flash 里，所以当你下一次上电时，这些标记都是直接可用的。
 
-## 上传新固件
+## 软件部分
 
 Pixy使用保存在ROM里的bootloader来上传最新的固件到Flash里。这使得Pixy不会“变砖”，也就是说你总可以从不成功的固件上传或不完美固件版本的升级中恢复你的Pixy。
 
@@ -151,22 +149,26 @@ Windows XP 用户，会看到添加新硬件的对话框 :
 
 驱动将会安装完成，等待完成后继续。  
 
-打开PixyMon
-首先打开PixyMon，当PixyMon运行后，Pixy上的LED会关闭，你会看到如下信息“Pixy programming state detected”在PixyMon的命令窗口区。如果你没有看到上面信息，有可能是驱动还在安装，再多等一段时间。
-选择菜单File➜Program，选取文件对话框将会弹出，浏览到你的新固件位置（.hex文件）然后选择相应文件，然后点击OK。Pixy会开始接受新固件，然后将其写入到flash中。这是非常快的，一般只需要2～3秒钟。当完成后，你会看到“done!”信息，你需要拔掉USB线然后重新插上来运行新固件。
-任务完成。
-再一次安装固件
-下一次上传固件时，你的驱动已经安装，所以你只需要通过按键然后插上USB线进入固件上传模式。并且PixyMon可以已经在运行，这并不影响。
-3. Pixy与Arduino连接
-Pixy被设计为可以与微控制器进行通讯，并且Pixy可以直接与Arduino进行通讯。它会以1Mbits/s的速度发送块信息给Arduino，这意味着Pixy每秒可以发送超过6000个识别的物体或每帧135个被识别的物体（Pixy每秒可以处理50帧画面）。
-OK，想让Pixy与Arduino进行通讯，使用Pixy自带的数据线连接Pixy到Arduino。
+### 打开PixyMon
+
+首先打开 PixyMon，当 PixyMon 运行后，Pixy 上的 LED 会关闭，你会看到如下信息 **Pixy programming state detected** 在 PixyMon 的命令窗口区。如果你没有看到上面信息，有可能是驱动还在安装，再多等一段时间。
+
+选择菜单 **File➜Program**，选取文件对话框将会弹出，浏览到你的新固件位置 (.hex文件) 然后选择相应文件，然后点击 OK。Pixy 会开始接受新固件，然后将其写入到 flash 中。这是非常快的，一般只需要 2～3 秒钟。当完成后，你会看到 **done!** 信息，你需要拔掉 USB 线然后重新插上来运行新固件。
+
+下一次上传固件时，你的驱动已经安装，所以你只需要通过按键然后插上 USB 线进入固件上传模式。并且 PixyMon 可以已经在运行，这并不影响。
+
+## 硬件部分
+
+Pixy 被设计为可以与微控制器进行通讯，并且 Pixy 可以直接与 Arduino 进行通讯。它会以 1Mbits/s 的速度发送块信息给 Arduino，这意味着 Pixy 每秒可以发送超过 6000 个识别的物体或每帧 135 个被识别的物体 (Pixy 每秒可以处理 50 帧画面)。
+OK，想让 Pixy 与 Arduino 进行通讯，使用 Pixy 自带的数据线连接 Pixy 到 Arduino。
 
 ![](https://github.com/SeeedDocument/pixy-cmucam5/raw/master/img/14.JPG)
 
 ![](https://github.com/SeeedDocument/pixy-cmucam5/raw/master/img/15.JPG)
 
-接下来，下载Arduino库在这里：http://pan.baidu.com/s/1dDpDlvV ，打开Arduino IDE并且通过菜单Sketch->Import Library导入Pixy库文件，然后浏览到Pixy库文件解压的地方。
-然后，通过菜单File➜Examples➜Pixy载入“hello_world”例子。上传代码到Arduino并且打开Serial Monitor（串口监视器）。你应该可以看到一些类似于下面的数据信息：
+接下来，下载 Arduino 库，打开 Arduino IDE 并且通过菜单 **Sketch->Import Library** 导入 Pixy 库文件，然后浏览到 Pixy 库文件解压的地方。
+
+然后，通过菜单 **File➜Examples➜Pixy** 载入 “hello_world” 示例。上传代码到 Arduino 并且打开串口监视器。可以看到一些类似于下面的数据信息 :
 
 ```
 Detected 1: block 0: sig: 1 x: 159 y: 109 width: 61 height:
@@ -174,43 +176,54 @@ Detected 1: block 0: sig: 1 x: 159 y: 109 width: 61 height:
 61Detected 1: block 0: sig: 1 x: 146 y: 111 width: 70 height: 65…
 ```
 
-注意，这个例子中，如果Pixy运行了默认的固件，并且一个物体被识别才会打印这些信息。
-Arduino API
-在Arduino中使用Pixy是非常简单的，你只需要包含SPI和Pixy的头文件：
+注意，这个示例中，如果 Pixy 运行了默认的固件，需要有一个物体被识别才会打印这些信息。
+
+### Arduino API
+
+在 Arduino 中使用 Pixy 是非常简单的，只需要包含 SPI 和 Pixy 的头文件 :
 
 ```
 #include <SPI.h>
 #include <pixy.h>
 ```
 
-并且在setup()和loop()函数外面创建一个全局的Pixy实例变量：
+并且在 setup() 和 loop() 函数外面创建一个全局的 Pixy 实例变量 :
 
 ```
 Pixy,pixy;
 ```
 
-API包含一个函数：getBlocks()，这个函数将返回Pixy所识别的物体数量。然后你就可以通过pixy.blocks[]的数组得到每个识别到的物体数据（每个数组成员对应一个被识别的物体）。每个成员（i）包含下列元素：
-pixy.blocks[i].signature：被识别物体的标记编号；
-pixy.blocks[i].x：被识别物体中心位置在x方向的坐标；
-pixy.blocks[i].y：被识别物体中心位置在y方向的坐标；
-pixy.blocks[i].width：被识别物体的宽度（1～320）；
-pixy.blocks[i].height：被识别物体的高度（1～200）；
-pixy.blocks[i].print()：一个成员函数用来打印被识别物体的信息到串口上；
-所以Pixy与Arduino通讯很简单。
-其它微控制器或设备
-Pixy支持多种方式输出被识别物体的数据。它支持SPI，I2C，UART或模拟/数字 I/O口（通过10Pin接口）。Pixy还支持USB2.0 。你可以通过PixyMon的对话框来配置Pixy使用哪种方式。“Data out port”参数决定了输出方式（UART/SPI/Arduino SPI/I2C）。
+API包含一个函数 : getBlocks()，这个函数将返回 Pixy 所识别的物体数量。然后你就可以通过 pixy.blocks[] 的数组得到每个识别到的物体的数据 (每个数组成员对应一个被识别的物体)。每个成员 (i) 包含下列元素：
+- pixy.blocks[i].signature : 被识别物体的标记编号；
+- pixy.blocks[i].x : 被识别物体中心位置在 x 方向的坐标；
+- pixy.blocks[i].y : 被识别物体中心位置在 y 方向的坐标；
+- pixy.blocks[i].width : 被识别物体的宽度 (1～320)；
+- pixy.blocks[i].height : 被识别物体的高度 (1～200)；
+- pixy.blocks[i].print() : 一个成员函数用来打印被识别物体的信息到串口上；
+
+所以 Pixy 与 Arduino 通讯很简单。
+
+### 其它微控制器或设备
+
+Pixy 支持多种方式输出被识别物体的数据。它支持 SPI，I2C，UART 或模拟/数字 I/O 口 (通过 10Pin 接口)。Pixy 还支持 USB2.0。你可以通过 PixyMon 的对话框来配置 Pixy 使用哪种方式。“Data out port” 参数决定了输出方式 (UART/SPI/Arduino SPI/I2C)。
 
 ![](https://github.com/SeeedDocument/pixy-cmucam5/raw/master/img/16.png)
 
-如果你将鼠标指针移动到“Data out port”文字上，会有提示信息显示各个类型的接口对应的文字：
-SPI：这是默认的输出端口，使用了三根心（IO口的第Pin1、3、4）并且用于与Arduino通讯；
-I2C：两线接口（IO口的Pin5和9），可以支持一个主机与127个从机的通讯（多大127个Pixy）；
-UART：这是普通的串口（IO口的Pin1和4）。Pixy通过Pin1（输入）接受数据，Pin4（输出）发送数据；
-模拟/数字 X：这种方式将在Pin3口输出0～3.3V的模拟电压，表示监测到的最大物体的X值；
-模拟/数字 Y：这种方式将在Pin3口输出0～3.3V的模拟电压，表示监测到的最大物体的Y值；
+如果你将鼠标指针移动到 “Data out port” 文字上，会有提示信息显示各个类型的接口对应的文字：
+- SPI : 这是默认的输出端口，使用了三根线 (IO 口的 1、3、4 引脚) 用于与 Arduino 通讯；
+- I2C : 两线接口 (IO 口的 5 和 9 引脚)，可以支持一个主机与 127 个从机的通讯 (多达 127 个 Pixy)；
+- UART : 这是普通的串口 (IO 口 1 和 4 引脚)。Pixy 通过 1 引脚 (输入) 接受数据，4 引脚 (输出) 发送数据；
+- 模拟/数字 X : 这种方式将在 3 引脚输出 0～3.3V 的模拟电压，表示检测到物体的最大 X 值；
+- 模拟/数字 Y : 这种方式将在 3 引脚输出 0～3.3V 的模拟电压，表示检测到物体的最大 Y 值；
 
 ![](https://github.com/SeeedDocument/pixy-cmucam5/raw/master/img/17.JPG)
 
-在牛角座的上边相应序号为左上角1号脚：
+在牛角座的上边相应序号为左上角 1 引脚：
 
 ![](https://github.com/SeeedDocument/pixy-cmucam5/raw/master/img/18.png)
+
+## 资源下载
+
+*
+*
+* 
