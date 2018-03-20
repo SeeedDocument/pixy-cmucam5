@@ -224,6 +224,6 @@ Pixy 支持多种方式输出被识别物体的数据。它支持 SPI，I2C，UA
 
 ## 资源下载
 
-*
-*
-* 
+* [library](https://github.com/SeeedDocument/pixy-cmucam5/raw/master/res/library.zip)
+* [pixy firmware update](https://github.com/SeeedDocument/pixy-cmucam5/raw/master/res/pixy%20firmware%20update.rar)
+* [pixymon_windows-2.0.9](https://github.com/SeeedDocument/pixy-cmucam5/raw/master/res/pixymon_windows-2.0.9.exe(1).zip)
