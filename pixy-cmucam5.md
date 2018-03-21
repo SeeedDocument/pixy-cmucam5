@@ -1,11 +1,11 @@
 ---
 title: pixy-cmucam5
-category:
-bzurl:
+category: MakerPro
+bzurl: https://www.seeedstudio.com/Pixy-CMUcam5-Sensor-p-2048.html
 oldwikiname:
 prodimagename:
 wikiurl: http://wiki.seeedstudio.com/cn/pixy-cmucam5
-sku:
+sku: 101990056
 ---
 
 ![](https://github.com/SeeedDocument/pixy-cmucam5/raw/master/img/1.jpg)
@@ -224,6 +224,6 @@ Pixy 支持多种方式输出被识别物体的数据。它支持 SPI，I2C，UA
 
 ## 资源下载
 
-* [library](https://github.com/SeeedDocument/pixy-cmucam5/raw/master/res/library.zip)
-* [pixy firmware update](https://github.com/SeeedDocument/pixy-cmucam5/raw/master/res/pixy%20firmware%20update.rar)
-* [pixymon_windows-2.0.9](https://github.com/SeeedDocument/pixy-cmucam5/raw/master/res/pixymon_windows-2.0.9.exe(1).zip)
+* **[库文件]** [library](https://github.com/SeeedDocument/pixy-cmucam5/raw/master/res/library.zip)
+* **[固件]** [pixy firmware update](https://github.com/SeeedDocument/pixy-cmucam5/raw/master/res/pixy%20firmware%20update.rar)
+* **[Pixymon]** [pixymon_windows-2.0.9](https://github.com/SeeedDocument/pixy-cmucam5/raw/master/res/pixymon_windows-2.0.9.exe.zip)
